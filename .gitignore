@@ -1,0 +1,6 @@
+*.vsidx
+/.vs/*
+/Application/bin/*
+/Application/obj/*
+/AppTest/bin/Debug/*
+/AppTest/obj/*
