@@ -1,4 +1,4 @@
-﻿namespace TestTask.Data.Entityes.Interfaces
+﻿namespace TestTask.Data.Interfaces
 {
   public interface IEntity
   {

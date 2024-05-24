@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TestTask.Model;
+using TestTask.Service.Interfaces;
 
 namespace TestTask.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class PatientController : ControllerBase
+  public class PatientController : CRUDController<PatientModel>
   {
+    public PatientController(IPatientService service) : base(service) { }
   }
 }

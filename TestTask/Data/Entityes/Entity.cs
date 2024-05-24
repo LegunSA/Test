@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TestTask.Data.Entityes.Interfaces;
+using TestTask.Data.Interfaces;
 
 namespace TestTask.Data.Entityes
 {
