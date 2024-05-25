@@ -1,8 +1,8 @@
-﻿using TestTask.Model;
+﻿using TestTask.Data.Entityes;
 
 namespace TestTask.Service.Interfaces
 {
-  public interface IPatientService : IBaseSrvice<PatientModel>
+  public interface IPatientService : IBaseSrvice<Patient>
   {
   }
 }

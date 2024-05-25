@@ -1,13 +1,13 @@
-﻿using TestTask.Model.Interfaces;
+﻿using TestTask.Data.Interfaces;
 
 namespace TestTask.Service.Interfaces
 {
-  public interface IBaseSrvice<Model> where Model : class, IModel
+  public interface IBaseSrvice<Entity> where Entity : class, IEntity
   {
-    public Task<Model> GetAsync(Guid id);
-    public Task<bool> AddAsync(Model model);
-    public Task<bool> UpdateAsync(Model model);
+    public Task<Entity?> GetAsync(Guid id);
+    public Task<bool> AddAsync(Entity entity);
+    public Task<bool> UpdateAsync(Entity entity);
     public Task<bool> DeleteAsync(Guid id);
-    public Task<IEnumerable<Model>> GetAllAsync();
+    public Task<IEnumerable<Entity>?> GetAllAsync();
   }
 }

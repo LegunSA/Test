@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TestTask.Data.Interfaces;
-using TestTask.Model.Interfaces;
 using TestTask.Service.Interfaces;
 
 namespace TestTask.Service
 {
-  public abstract class BaseService<Enity, Model> : IBaseSrvice<Model>
-    where Enity : class, IEntity
-    where Model : class, IModel
+  public abstract class BaseService<Entity> : IBaseSrvice<Entity>
+    where Entity : class, IEntity
   {
     protected readonly IMapper _mapper;
     protected readonly IRepository _repository;
@@ -17,16 +15,16 @@ namespace TestTask.Service
       _mapper = mapper;
       _repository = repository;
     }
-    public async Task<bool> AddAsync(Model model)
+    public async Task<bool> AddAsync(Entity model)
     {
-      await _repository.AddAsync(_mapper.Map<Enity>(model));
+      await _repository.AddAsync(model);
 
       return await _repository.SaveChangesAsync();
     }
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-      Enity? element = await _repository.FirstOrDefaultAsync<Enity>(x => x.Id == id);
+      Entity? element = await _repository.FirstOrDefaultAsync<Entity>(x => x.Id == id);
 
       if (element == null)
       {
@@ -38,19 +36,19 @@ namespace TestTask.Service
       return await _repository.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<Model>> GetAllAsync()
+    public async Task<IEnumerable<Entity>?> GetAllAsync()
     {
-      return _mapper.Map<IEnumerable<Model>>(await _repository.Get<Enity>().ToListAsync());
+      return await _repository.Get<Entity>().ToListAsync();
     }
 
-    public async Task<Model> GetAsync(Guid id)
+    public async Task<Entity?> GetAsync(Guid id)
     {
-      return _mapper.Map<Model>(await _repository.FirstOrDefaultAsync<Enity>(x => x.Id == id));
+      return await _repository.FirstOrDefaultAsync<Entity>(x => x.Id == id);
     }
 
-    public async Task<bool> UpdateAsync(Model model)
+    public async Task<bool> UpdateAsync(Entity model)
     {
-      _repository.Update(_mapper.Map<Enity>(model));
+      _repository.Update(model);
 
       return await _repository.SaveChangesAsync();
     }

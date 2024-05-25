@@ -8,5 +8,6 @@ namespace TestTask.Model
     public required NameModel Name { get; set; }
     public Gender? Gender { get; set; }
     public required DateTime BirthDate { get; set; }
+    public bool? Active { get; set; }
   }
 }
