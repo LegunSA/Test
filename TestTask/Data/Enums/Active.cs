@@ -3,11 +3,9 @@
 namespace TestTask.Data.Enums
 {
   [JsonConverter(typeof(JsonStringEnumConverter))]
-  public enum Gender
+  public enum Active
   {
-    male,
-    female,
-    other,
-    unknown
+    @fasle,
+    @true
   }
 }
