@@ -3,6 +3,7 @@ using TestTask.Model.Interfaces;
 using TestTask.Service.Interfaces;
 using TestTask.Data.Interfaces;
 using AutoMapper;
+using TestTask.Data.Enums;
 
 namespace TestTask.Controllers
 {

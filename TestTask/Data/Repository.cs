@@ -18,6 +18,11 @@ namespace TestTask.Data
       return _dbContext.Set<TEntity>().AsNoTracking();
     }
 
+    public IQueryable<TEntity>? GetByFilter<TEntity>(Expression<Func<TEntity, bool>> condition) where TEntity : class, IEntity
+    {
+      return _dbContext.Set<TEntity>().AsNoTracking().Where(condition);
+    }
+
     public async Task<TEntity?> FirstOrDefaultAsync<TEntity>(Expression<Func<TEntity, bool>> condition) where TEntity : class, IEntity
     {
       return await _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(condition);
