@@ -2,3 +2,8 @@
 /TestTask/obj/Debug
 /TestTask/obj
 /TestTask/.vs
+/.vs/TestTask
+/bin/Debug/
+/obj/Debug/
+/obj/Docker/
+/.vs

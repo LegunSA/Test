@@ -1,6 +1,6 @@
 @TestTask_HostAddress = http://localhost:5139
 
-GET {{TestTask_HostAddress}}/weatherforecast/
+GET {{TestTask_HostAddress}}/swagger/
 Accept: application/json
 
 ###
