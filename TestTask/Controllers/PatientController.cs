@@ -16,13 +16,7 @@ namespace TestTask.Controllers
     [HttpGet("list/{prefix}${date:datetime}")]
     public IEnumerable<Patient>? GetFilteredByDate(SearchDatePrefix prefix, DateTime date)
     {
-      if (_service is IPatientService patientService)
-      {
-        IEnumerable<Entity>? items = patientService.GetPatientByDate(prefix, date);
-
-        return _mapper.Map<IEnumerable<Patient>?>(items);
-      }
-      return null;
+      return GetFilteredByDate(prefix, date);
     }
 
     [HttpGet("list/param=")]
@@ -34,11 +28,14 @@ namespace TestTask.Controllers
       bool isDate = DateTime.TryParse(param.Substring(2), out date);
       bool isEnum = Enum.TryParse(param.Substring(0, 2), out prefix);
 
-      if (isEnum && isDate && _service is IPatientService patientService)
-      {
-        IEnumerable<Entity>? items = patientService.GetPatientByDate(prefix, date);
+      return (isEnum && isDate) ? GetFilteredByDate(prefix, date) : null;
+    }
 
-        return _mapper.Map<IEnumerable<Patient>?>(items);
+    private IEnumerable<Patient>? GetPatientByDate(SearchDatePrefix prefix, DateTime date)
+    {
+      if (_service is IPatientService patientService)
+      {
+        return _mapper.Map<IEnumerable<Patient>?>(patientService.GetPatientByDate(prefix, date));
       }
       return null;
     }
