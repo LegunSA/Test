@@ -7,3 +7,6 @@
 /obj/Debug/
 /obj/Docker/
 /.vs
+/ImportData/bin
+/ImportData/obj/Debug
+/ImportData/obj
