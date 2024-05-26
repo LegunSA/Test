@@ -1,7 +1,7 @@
 ﻿using ImportData;
+using ImportData.Interfaces;
 using ImportData.Model;
 using ImportData.Model.Enums;
-using System.Net.Http.Json;
 
 Console.WriteLine("Press any key to start");
 Console.ReadLine();
@@ -21,8 +21,8 @@ DateTime _startDateTime = new(2021, 1, 1, 0, 0, 0);
 string url = "https://localhost:57239/api/Patient/create";
 
 Random random = new Random();
-List<Patient> patients = new List<Patient>();
-HttpClient client = new HttpClient();
+IEnumerable<Patient> patients = new List<Patient>();
+ISender sender = new HttpSender();
 
 IPatientGenerator maleGenerator =
   new PatientGenerator(_listOfMaleName, _listOfMaleFamily, _listOfMaleSurname, _listOfUse, _startDateTime, Gender.male);
@@ -30,19 +30,16 @@ IPatientGenerator maleGenerator =
 IPatientGenerator femaleGenerator =
   new PatientGenerator(_listOfFemaleName, _listOfFemaleFamily, _listOfFemaleSurame, _listOfUse, _startDateTime, Gender.female);
 
-Dictionary<int,IPatientGenerator> patientGeneratorList = new Dictionary<int,IPatientGenerator>();
-patientGeneratorList.Add(0, maleGenerator);
-patientGeneratorList.Add(1, femaleGenerator);
+Dictionary<int,IPatientGenerator> patientGeneratorList = new Dictionary<int, IPatientGenerator>
+{
+  { 0, maleGenerator },
+  { 1, femaleGenerator }
+};
 
-for (int i = 0; i < _countOfPatients; i++) 
-{
-  var generator = patientGeneratorList[random.Next(0, patientGeneratorList.Count)];
-  patients.Add(generator.GeneratePatient());
-}
-foreach (Patient patient in patients)
-{
-  await client.PostAsJsonAsync(url, patient);
-}
+IPatientsBuilder patientsBuilder = new PatientsBuilder(patientGeneratorList);
+patients = patientsBuilder.BuildPatientList(_countOfPatients);
+
+await sender.SendAsync(patients, url);
 
 Console.WriteLine("Compleate");
 

@@ -1,9 +1,10 @@
-﻿using ImportData.Model;
+﻿using ImportData.Interfaces;
+using ImportData.Model;
 using ImportData.Model.Enums;
 
 namespace ImportData
 {
-  internal class PatientGenerator : IPatientGenerator
+    internal class PatientGenerator : IPatientGenerator
   {
     private string[] _listOfName;
     private string[] _listOfFamily;

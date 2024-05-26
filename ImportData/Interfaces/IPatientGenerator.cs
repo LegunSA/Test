@@ -1,6 +1,6 @@
 ﻿using ImportData.Model;
 
-namespace ImportData
+namespace ImportData.Interfaces
 {
   internal interface IPatientGenerator
   {
