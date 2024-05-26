@@ -15,8 +15,20 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DemoDBContext>(options
-  => options.UseSqlServer(builder.Configuration.GetConnectionString("Test")));
+if (Environment.GetEnvironmentVariable("ENVIRONMENT") is not null)
+{
+  string dbHost = Environment.GetEnvironmentVariable("DB_Host")!;
+  string dbName = Environment.GetEnvironmentVariable("DB_Name")!;
+  string dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD")!;
+  string connectionString = $"server={dbHost};database={dbName};trusted_connection=false;User Id=sa;Password={dbPassword};Persist Security Info=False;Encrypt=False";
+  builder.Services.AddDbContext<DemoDBContext>(options
+    => options.UseSqlServer(connectionString));
+}
+else
+{
+  builder.Services.AddDbContext<DemoDBContext>(options
+    => options.UseSqlServer(builder.Configuration.GetConnectionString("Test")));
+}
 
 builder.Services.AddScoped<IRepository, Reposiory>();
 
@@ -40,7 +52,7 @@ using (var scope = app.Services.CreateScope())
   var services = scope.ServiceProvider;
 
   var context = services.GetRequiredService<DemoDBContext>();
-  //context.Database.EnsureCreated();
+  context.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
