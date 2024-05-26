@@ -4,6 +4,7 @@ using TestTask.Service.Interfaces;
 using TestTask.Data.Interfaces;
 using AutoMapper;
 using TestTask.Data.Enums;
+using Microsoft.AspNetCore.Components;
 
 namespace TestTask.Controllers
 {
@@ -26,8 +27,8 @@ namespace TestTask.Controllers
       return _mapper.Map<IEnumerable<Model>?>(items);
     }
 
-    [HttpGet("get/{id:Guid}")]
-    public async Task<Model?> Get(Guid id)
+    [HttpGet("get")]
+    public async Task<Model?> Get([FromQuery] Guid id)
     {
       Entity? item = await _service.GetAsync(id);
 
@@ -50,8 +51,8 @@ namespace TestTask.Controllers
       return await _service.UpdateAsync(entity);
     }
 
-    [HttpDelete("delete/{id:Guid}")]
-    public async Task<bool> Delete(Guid id)
+    [HttpDelete("delete")]
+    public async Task<bool> Delete([FromQuery] Guid id)
     {
       return await _service.DeleteAsync(id);
     }

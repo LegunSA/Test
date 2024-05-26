@@ -13,14 +13,14 @@ namespace TestTask.Controllers
   {
     public PatientController(IPatientService service, IMapper mapper) : base(service, mapper) { }
 
-    [HttpGet("list/{prefix}${date:datetime}")]
-    public IEnumerable<Patient>? GetFilteredByDate(SearchDatePrefix prefix, DateTime date)
+    [HttpGet("GetFilteredByBirthDate")]
+    public IEnumerable<Patient>? GetFilteredByDate([FromQuery] SearchDatePrefix prefix, DateTime date)
     {
       return GetFilteredByDate(prefix, date);
     }
 
-    [HttpGet("list/param=")]
-    public IEnumerable<Patient>? GetFiltered(string param)
+    [HttpGet("GetByBirthDate")]
+    public IEnumerable<Patient>? GetFiltered([FromQuery] string param)
     {
       DateTime date;
       SearchDatePrefix prefix;
