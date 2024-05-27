@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "d538a044-c15e-4514-9514-487ddb5055db",
+		"name": "Test task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4535629"
+	},
+	"item": [
+		{
+			"name": "Filtered BirthDate",
+			"item": [
+				{
+					"name": "EQ equal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=eq&date=2023-01-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "eq"
+								},
+								{
+									"key": "date",
+									"value": "2023-01-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE not equal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=ne&date=2023-01-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "ne"
+								},
+								{
+									"key": "date",
+									"value": "2023-01-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LT less than",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=lt&date=2023-03-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "lt"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GT greater than",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=gt&date=2023-03-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "gt"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GE greater or equal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=ge&date=2023-03-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "ge"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LE less or equal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=le&date=2023-03-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "le"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SA starts after",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=sa&date=2023-03-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "sa"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EB ends before",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=eb&date=2023-03-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "eb"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AP approximately",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:57239/api/Patient/GetFilteredByBirthDate?prefix=ap&date=2023-03-05T01%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "57239",
+							"path": [
+								"api",
+								"Patient",
+								"GetFilteredByBirthDate"
+							],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "ap"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-05T01%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get all patient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:57239/api/Patient/list",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "57239",
+					"path": [
+						"api",
+						"Patient",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new patient with id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": {\r\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"use\": \"string\",\r\n    \"family\": \"Ivanow\",\r\n    \"given\": [\r\n      \"Ivan\",\r\n      \"Ivanovich\"\r\n    ]\r\n  },\r\n  \"gender\": \"male\",\r\n  \"birthDate\": \"2024-05-26T15:51:55.660Z\",\r\n  \"active\": \"fasle\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:57239/api/Patient/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "57239",
+					"path": [
+						"api",
+						"Patient",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new patient without id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": {\r\n    \"use\": \"Petrow\",\r\n    \"family\": \"Petrov\",\r\n    \"given\": [\r\n      \"Petr\",\r\n      \"Petrovich\"\r\n    ]\r\n  },\r\n  \"gender\": \"male\",\r\n  \"birthDate\": \"2024-05-26T15:51:55.660Z\",\r\n  \"active\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:57239/api/Patient/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "57239",
+					"path": [
+						"api",
+						"Patient",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update patient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": {\r\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"use\": \"string2\",\r\n    \"family\": \"Ivanov\",\r\n    \"given\": [\r\n      \"Ivan\",\r\n      \"Petrovich\"\r\n    ]\r\n  },\r\n  \"gender\": \"male\",\r\n  \"birthDate\": \"2024-05-26T16:06:05.260Z\",\r\n  \"active\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:57239/api/Patient/edit",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "57239",
+					"path": [
+						"api",
+						"Patient",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get patient by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:57239/api/Patient/get?id=3fa85f64-5717-4562-b3fc-2c963f66afa6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "57239",
+					"path": [
+						"api",
+						"Patient",
+						"get"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete patient",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:57239/api/Patient/delete?id=3fa85f64-5717-4562-b3fc-2c963f66afa6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "57239",
+					"path": [
+						"api",
+						"Patient",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
