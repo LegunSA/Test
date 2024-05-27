@@ -14,29 +14,40 @@ namespace TestTask.Controllers
     public PatientController(IPatientService service, IMapper mapper) : base(service, mapper) { }
 
     [HttpGet("GetFilteredByBirthDate")]
-    public IEnumerable<PatientModel>? GetFilteredByBirthDate([FromQuery] SearchDatePrefix prefix, DateTime date)
+    public async Task<IEnumerable<PatientModel>?> GetFilteredByBirthDate([FromQuery] SearchDatePrefix prefix, DateTime date)
     {
-      return GetPatientByDate(prefix, date);
+      IEnumerable<PatientModel>? result = await GetPatientByDate(prefix, date);
+      //TODO LS log
+      return result;
     }
 
     [HttpGet("GetByBirthDate")]
-    public IEnumerable<PatientModel>? GetFiltered([FromQuery] string param)
+    public async Task<IEnumerable<PatientModel>?> GetFiltered([FromQuery] string param)
     {
       DateTime date;
       SearchDatePrefix prefix;
 
       bool isDate = DateTime.TryParse(param.Substring(2), out date);
       bool isEnum = Enum.TryParse(param.Substring(0, 2), out prefix);
-      return (isEnum && isDate) ? GetPatientByDate(prefix, date) : null;
+
+      IEnumerable<PatientModel>? result = (isEnum && isDate) ? await GetPatientByDate(prefix, date) : null;
+      //TODO LS log
+      return result;
     }
 
-    private IEnumerable<PatientModel>? GetPatientByDate(SearchDatePrefix prefix, DateTime date)
+    private async Task<IEnumerable<PatientModel>?> GetPatientByDate(SearchDatePrefix prefix, DateTime date)
     {
-      if (_service is IPatientService patientService)
+      try
       {
-        return _mapper.Map<IEnumerable<PatientModel>?>(patientService.GetPatientByDate(prefix, date));
+        if (_service is IPatientService patientService)
+        {
+          Task<IEnumerable<Patient>?>? patients = patientService.GetPatientByDateAsync(prefix, date);
+
+          return (patients != null) ? _mapper.Map<IEnumerable<PatientModel>?>(await patients) : null;
+        }
+        return null;
       }
-      return null;
+      catch (Exception ex) { return null; }
     }
   }
 }

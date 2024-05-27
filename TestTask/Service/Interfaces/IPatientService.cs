@@ -5,6 +5,6 @@ namespace TestTask.Service.Interfaces
 {
   public interface IPatientService : IBaseSrvice<Patient>
   {
-    public IEnumerable<Patient>? GetPatientByDate(SearchDatePrefix prefix, DateTime date);
+    public Task<IEnumerable<Patient>?>? GetPatientByDateAsync(SearchDatePrefix prefix, DateTime date);
   }
 }

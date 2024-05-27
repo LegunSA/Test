@@ -3,8 +3,6 @@ using TestTask.Model.Interfaces;
 using TestTask.Service.Interfaces;
 using TestTask.Data.Interfaces;
 using AutoMapper;
-using TestTask.Data.Enums;
-using Microsoft.AspNetCore.Components;
 
 namespace TestTask.Controllers
 {
@@ -22,39 +20,76 @@ namespace TestTask.Controllers
     [HttpGet("list")]
     public async Task<IEnumerable<Model>?> GetAll()
     {
-      IEnumerable<Entity>? items = await _service.GetAllAsync();
-
-      return _mapper.Map<IEnumerable<Model>?>(items);
+      try
+      {
+        IEnumerable<Entity>? items = await _service.GetAllAsync();
+        //TODO LS log
+        return _mapper.Map<IEnumerable<Model>?>(items);
+      }
+      catch (Exception ex) 
+      {
+        return null;
+      }
     }
 
     [HttpGet("get")]
     public async Task<Model?> Get([FromQuery] Guid id)
     {
-      Entity? item = await _service.GetAsync(id);
-
-      return _mapper.Map<Model?>(item);
+      try
+      {
+        Entity? item = await _service.GetAsync(id);
+        //TODO LS log
+        return _mapper.Map<Model?>(item);
+      }
+      catch(Exception ex) { return null; }
     }
 
     [HttpPost("create")]
-    public async Task<bool> Create(Model item)
+    public async Task<bool?> Create(Model item)
     {
-      Entity entity = _mapper.Map<Entity>(item);
-
-      return await _service.AddAsync(entity);
+      try
+      {
+        Entity entity = _mapper.Map<Entity>(item);
+        bool? result = await _service.AddAsync(entity);
+        //TODO LS log
+        return result;
+      }
+      catch (Exception ex)
+      {
+        return null;
+      }
     }
 
     [HttpPut("edit")]
-    public async Task<bool> Update(Model item)
+    public async Task<bool?> Update(Model item)
     {
-      Entity entity = _mapper.Map<Entity>(item);
+      try
+      {
+        Entity entity = _mapper.Map<Entity>(item);
 
-      return await _service.UpdateAsync(entity);
+        bool? result = await _service.UpdateAsync(entity);
+        //TODO LS log
+        return result;
+      }
+      catch (Exception ex)
+      {
+        return null;
+      }
     }
 
     [HttpDelete("delete")]
-    public async Task<bool> Delete([FromQuery] Guid id)
+    public async Task<bool?> Delete([FromQuery] Guid id)
     {
-      return await _service.DeleteAsync(id);
+      try
+      {
+        bool? result = await _service.DeleteAsync(id);
+        //TODO LS log
+        return result;
+      }
+      catch (Exception ex) 
+      {
+        return null;
+      }
     }
   }
 }
