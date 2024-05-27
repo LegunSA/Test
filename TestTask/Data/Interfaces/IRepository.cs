@@ -10,6 +10,6 @@ namespace TestTask.Data.Interfaces
     public Task AddAsync<TEntity>(TEntity entity) where TEntity : class, IEntity;
     public void Update<TEntity>(TEntity entity) where TEntity : class, IEntity;
     public void Remove<TEntity>(TEntity entity) where TEntity : class, IEntity;
-    public Task<bool?> SaveChangesAsync();
+    public Task<bool> SaveChangesAsync();
   }
 }

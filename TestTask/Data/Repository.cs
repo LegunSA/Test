@@ -26,6 +26,7 @@ namespace TestTask.Data
       }
       catch (ArgumentNullException ex)
       {
+        //TODO LS log
         return null;
       }
     }
@@ -38,7 +39,8 @@ namespace TestTask.Data
       }
       catch(ArgumentNullException ex)
       {
-        return null;
+        //TODO LS log
+        throw new ArgumentNullException();
       }
     }
 
@@ -57,7 +59,7 @@ namespace TestTask.Data
       _dbContext.Set<TEntity>().Remove(entity);
     }
 
-    public async Task<bool?> SaveChangesAsync()
+    public async Task<bool> SaveChangesAsync()
     {
       try
       {
@@ -65,11 +67,13 @@ namespace TestTask.Data
       }
       catch (DbUpdateConcurrencyException ex)
       {
-        return null;
+        //TODO LS log
+        return false;
       }
       catch (DbUpdateException ex)
       {
-        return null;
+        //TODO LS log
+        return false;
       }
     }
   }
