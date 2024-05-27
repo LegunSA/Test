@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Linq.Expressions;
 using TestTask.Data.Entityes;
 using TestTask.Data.Enums;
 using TestTask.Data.Interfaces;
@@ -12,7 +13,7 @@ namespace TestTask.Service
 
     public IEnumerable<Patient>? GetPatientByDate(SearchDatePrefix prefix, DateTime date)
     {
-      Func<Patient, bool> condition;
+      Expression<Func<Patient, bool>> condition; ;
 
       switch (prefix)
       {
@@ -23,32 +24,30 @@ namespace TestTask.Service
           condition = x => x.BirthDate.Date != date.Date;
           break;
         case SearchDatePrefix.lt:
-          condition = x => x.BirthDate == date;
+        case SearchDatePrefix.eb:
+          condition = x => x.BirthDate.Date < date.Date;
           break;
         case SearchDatePrefix.gt:
-          condition = x => x.BirthDate == date;
+        case SearchDatePrefix.sa:
+          condition = x => x.BirthDate.Date > date.Date;
           break;
         case SearchDatePrefix.ge:
-          condition = x => x.BirthDate == date;
+          condition = x => x.BirthDate >= date;
           break;
         case SearchDatePrefix.le:
-          condition = x => x.BirthDate == date;
-          break;
-        case SearchDatePrefix.sa:
-          condition = x => x.BirthDate == date;
-          break;
-        case SearchDatePrefix.eb:
-          condition = x => x.BirthDate == date;
+          condition = x => x.BirthDate <= date;
           break;
         case SearchDatePrefix.ap:
-          condition = x => x.BirthDate == date;
+          DateTime start = date.AddMinutes(-90);
+          DateTime end = date.AddHours(24).AddMinutes(90);
+          condition = x => start < x.BirthDate && x.BirthDate < end;
           break;
         default:
           condition = x => x.BirthDate == date;
           break;
       }
-      var res = _repository.GetByFilter<Patient>(x => x.BirthDate == date);
-      return res;
+
+      return _repository.GetByFilter(condition)?.OrderBy(x => x.BirthDate);
     }
   }
 }

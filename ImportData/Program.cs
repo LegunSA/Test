@@ -17,7 +17,7 @@ string[] _listOfFemaleSurame = ["Ivanovna", "Petrova", "Dmitrievna", "Alexeevna"
 string[] _listOfUse = ["one", "two"];
 
 int _countOfPatients = 100;
-DateTime _startDateTime = new(2021, 1, 1, 0, 0, 0);
+DateTime _startDateTime = new(2024, 1, 1, 0, 0, 0);
 string url = "https://localhost:57239/api/Patient/create";
 
 Random random = new Random();

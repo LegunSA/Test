@@ -14,28 +14,27 @@ namespace TestTask.Controllers
     public PatientController(IPatientService service, IMapper mapper) : base(service, mapper) { }
 
     [HttpGet("GetFilteredByBirthDate")]
-    public IEnumerable<Patient>? GetFilteredByDate([FromQuery] SearchDatePrefix prefix, DateTime date)
+    public IEnumerable<PatientModel>? GetFilteredByBirthDate([FromQuery] SearchDatePrefix prefix, DateTime date)
     {
-      return GetFilteredByDate(prefix, date);
+      return GetPatientByDate(prefix, date);
     }
 
     [HttpGet("GetByBirthDate")]
-    public IEnumerable<Patient>? GetFiltered([FromQuery] string param)
+    public IEnumerable<PatientModel>? GetFiltered([FromQuery] string param)
     {
       DateTime date;
       SearchDatePrefix prefix;
 
       bool isDate = DateTime.TryParse(param.Substring(2), out date);
       bool isEnum = Enum.TryParse(param.Substring(0, 2), out prefix);
-
-      return (isEnum && isDate) ? GetFilteredByDate(prefix, date) : null;
+      return (isEnum && isDate) ? GetPatientByDate(prefix, date) : null;
     }
 
-    private IEnumerable<Patient>? GetPatientByDate(SearchDatePrefix prefix, DateTime date)
+    private IEnumerable<PatientModel>? GetPatientByDate(SearchDatePrefix prefix, DateTime date)
     {
       if (_service is IPatientService patientService)
       {
-        return _mapper.Map<IEnumerable<Patient>?>(patientService.GetPatientByDate(prefix, date));
+        return _mapper.Map<IEnumerable<PatientModel>?>(patientService.GetPatientByDate(prefix, date));
       }
       return null;
     }
